@@ -33,7 +33,7 @@ if args.Health == '3y':
     points += 1
 if args.Mood == 'Good':
     points += 1
-if args.Happiness == 'Week' or args.Happinness == 'Month':
+if args.Happiness == 'Week' or args.Happiness == 'Month':
     points += 1
 if 18.5 <= BMI * 10000 <= 24.9:
     points += 1
