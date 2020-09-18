@@ -1,0 +1,44 @@
+import argparse
+
+parser = argparse.ArgumentParser(description='Testing healthy lifestyle index')
+parser.add_argument('name')
+parser.add_argument('gender', choices=['male', 'female', 'other'])
+parser.add_argument('weight', type=int)
+parser.add_argument('height_in_cm', type=int)
+parser.add_argument('sleep_hours', help='How much do you usually sleep?', choices=['<7', '7-8', '>7'])
+parser.add_argument('meals', help='How many meals does your daily diet include?', choices=['1', '2-3', '4-5'])
+parser.add_argument('fruits', help='How many fresh fruits and vegetables do you eat during the day?',
+                   choices=['no', 'less-than-500g', 'more-than-500g'])
+parser.add_argument('steps', help='How many steps do you walk on average per day?',
+                   choices=['less-than-5000', '5000-10000', 'more-than-10000'])
+parser.add_argument('health', help='Do you monitor your health?',
+                   choices=['no', 'yes-medical-examination-in-the-last-3-years', 'yes-but-I-do-not-see-a-doctor'])
+parser.add_argument('mood', help='What is your mood today?)', choices=['good', 'neutral', 'bad'])
+parser.add_argument('happiness', help='When was the last time you had a state of happiness?',
+                   choices=['during-the-week', 'during-the-month', 'during-the-year'])
+args = parser.parse_args()
+bmi = args.weight/(args.height_in_cm/100)**2
+index = 0
+
+if args.sleep_hours == '7-8':
+   index += 1
+if args.meals == '4-5':
+   index += 1
+if args.fruits == 'more-than-500g':
+   index += 1
+if args.steps == 'more-than-10000':
+   index += 1
+if args.health == 'yes-medical-examination-in-the-last-3-years':
+   index += 1
+if args.mood == 'good':
+   index += 1
+if args.happiness == 'during-the-week' or args.happiness == 'during-the-month':
+   index += 1
+if 18.5 <= bmi <= 24.9:
+   index += 1
+if index == 8:
+   print('You are a true leader in a healthy lifestyle!')
+elif 5 <= index <= 7:
+   print('You are on the right track!')
+else:
+   print('You need to rethink your healthy lifestyle!')
